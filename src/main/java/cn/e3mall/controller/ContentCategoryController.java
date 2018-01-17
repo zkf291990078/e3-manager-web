@@ -17,14 +17,33 @@ public class ContentCategoryController {
 
 	@Autowired
 	private ContentCategoryService contentCategoryService;
-	
+
 	@RequestMapping("/content/category/list")
 	@ResponseBody
-	public List<EasyUITreeNode> getContentCatList(
-			@RequestParam(value="id", defaultValue="0") Long parentId) {
-		
+	public List<EasyUITreeNode> getContentCatList(@RequestParam(value = "id", defaultValue = "0") Long parentId) {
+
 		List<EasyUITreeNode> list = contentCategoryService.getContentCategoryList(parentId);
 		return list;
 	}
+
+	@RequestMapping("/content/category/create")
+	@ResponseBody
+	public E3Result addContentCategoryNode(Long parentId, String name) {
+		E3Result result = contentCategoryService.addContentCategory(parentId, name);
+		return result;
+	}
 	
+	@RequestMapping("/content/category/update")
+	@ResponseBody
+	public E3Result updateContentCategoryNode(Long id, String name) {
+		E3Result result = contentCategoryService.updateContentCategory(id, name);
+		return result;
+	}
+	@RequestMapping("/content/category/delete/")
+	@ResponseBody
+	public E3Result deleteContentCategoryNode(Long id) {
+		E3Result result = contentCategoryService.deleteContentCategory(id);
+		return result;
+	}
+
 }
