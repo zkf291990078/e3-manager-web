@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import cn.e3mall.common.utils.FastDFSClient;
+import cn.e3mall.common.utils.JsonUtils;
 
 @Controller
 public class PictureController {
@@ -20,7 +21,7 @@ public class PictureController {
 
 	@RequestMapping(value = "/pic/upload", produces = MediaType.TEXT_PLAIN_VALUE + ";charset=utf-8")
 	@ResponseBody
-	public Map fileUpload(MultipartFile uploadFile) {
+	public String fileUpload(MultipartFile uploadFile) {
 		try {
 			// 1、取文件的扩展名
 			String originalFilename = uploadFile.getOriginalFilename();
@@ -35,14 +36,14 @@ public class PictureController {
 			Map result = new HashMap<>();
 			result.put("error", 0);
 			result.put("url", url);
-			return result;
+			return JsonUtils.objectToJson(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// 5、返回map
 			Map result = new HashMap<>();
 			result.put("error", 1);
 			result.put("message", "图片上传失败");
-			return result;
+			return JsonUtils.objectToJson(result);
 		}
 	}
 
