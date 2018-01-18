@@ -24,7 +24,7 @@
 
         <dependency>
 			<groupId>cn.e3mall</groupId>
-			<artifactId>e3-content-interface</artifactId>
+			<artifactId>e3-search-interface</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<!-- spring的依赖 -->
@@ -116,6 +116,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
 	</build>
 
 
